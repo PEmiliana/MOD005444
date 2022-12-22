@@ -1,14 +1,12 @@
 
 import sys
-
 import matplotlib
-
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import pandas  # import the library which reads the data from our csv file
+
+import pandas #import the library which reads the data from our csv file
 from sklearn import tree
-from sklearn.tree import \
-    DecisionTreeClassifier  # import sklearn's decision tree classifier
+from sklearn.tree import DecisionTreeClassifier #import sklearn's decision tree classifier
 
 df = pandas.read_csv("trainingData100k.csv") #read the file with the training data
 

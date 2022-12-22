@@ -1,6 +1,10 @@
 
+import sys
+
 import matplotlib
+
 matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 import pandas
 from sklearn import tree
@@ -20,8 +24,9 @@ dtree = dtree.fit(X.values, y)
 tree.plot_tree(dtree, feature_names=features)
 
 #Two  lines to make our compiler able to draw:
-#plt.savefig(sys.stdout.buffer)
-#sys.stdout.flush()
+plt.savefig("plot.png")
+
+sys.stdout.flush()
 
 
 predictionData = [
