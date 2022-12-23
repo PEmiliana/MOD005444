@@ -1,18 +1,18 @@
 
 import sys
-
 import matplotlib
-
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import pandas  # import the library which reads the data from our csv file
 from sklearn import tree
-from sklearn.tree import \
-    DecisionTreeClassifier  # import sklearn's decision tree classifier
+from sklearn.tree import DecisionTreeClassifier  # import sklearn's decision tree classifier
+import numpy
+from sklearn import metrics
 
 df = pandas.read_csv("trainingData100k.csv") #read the file with the training data
 
 df['Success'] = df['Success'] #look for the Success row in our data set
+
 features = ['InitialSeparation', 'OvertakingSpeed', 'OncomingSpeed'] # define the headers of our rows
 
 X = df[features] # stores the features rows
@@ -25,9 +25,6 @@ dtree = dtree.fit(X.values, y) #added ".values" to X to fix the warning for "inv
 
 tree.plot_tree(dtree, feature_names=features) #build the tree
 
-#Two  lines to make our compiler able to draw:
-plt.savefig(sys.stdout.buffer)
-sys.stdout.flush()
 
 
 # predictionData =[ #data set to be predicted - this needs to match the size of correctResult to work correct
@@ -223,4 +220,15 @@ totalNumberOfData = len(predictionData) #store the length of our list of data
 calculatePercentage = (predictedTrue*100)/totalNumberOfData #calculate the % of correct predictions by dividing the predictions * 100 by the total amount of data to be predicted
 print("Predicted correct = " + str(calculatePercentage) + "% (" + str(predictedTrue) + " out of " + str(totalNumberOfData) + ")") #print the % of correct predictions (the calculatePercentage variable is converted to string so it can be displayed in the print statement)
 
+actual = numpy.random.binomial(1,.9,size = 1000)
+predicted = numpy.random.binomial(1,.9,size = 1000)
 
+confusion_matrix = metrics.confusion_matrix(actual, predicted)
+
+cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = confusion_matrix, display_labels = [False, True])
+
+cm_display.plot()
+plt.show()
+#Two  lines to make our compiler able to draw:
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
