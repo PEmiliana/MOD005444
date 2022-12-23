@@ -23,9 +23,8 @@ dtree = DecisionTreeClassifier()
 dtree = dtree.fit(X.values, y)
 tree.plot_tree(dtree, feature_names=features)
 
-#Two  lines to make our compiler able to draw:
+#Two  lines to make our compiler able to draw onto a png file
 plt.savefig("plot100kx20.png")
-
 sys.stdout.flush()
 
 
